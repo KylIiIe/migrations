@@ -1,9 +1,8 @@
 class CreateBookGenres < ActiveRecord::Migration[7.0]
   def change
     create_table :book_genres do |t|
-      t.integer :genre_id
-      t.integer :book_id
-      t.timestamps
+      t.references :genre, null: false, foreign_key: true
+      t.references :book, null: false, foreign_key: true
     end
   end
 end
