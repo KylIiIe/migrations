@@ -1,6 +1,6 @@
-class CreateBookGenres < ActiveRecord::Migration[7.0]
+class CreateBooksGenres < ActiveRecord::Migration[7.0]
   def change
-    create_table :book_genres do |t|
+    create_table :books_genres do |t|
       t.references :genre, null: false, foreign_key: true
       t.references :book, null: false, foreign_key: true
     end
