@@ -11,31 +11,17 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_05_16_165804) do
-  create_table "author_books", force: :cascade do |t|
-    t.integer "author_id", null: false
-    t.integer "book_id", null: false
-    t.index ["author_id"], name: "index_author_books_on_author_id"
-    t.index ["book_id"], name: "index_author_books_on_book_id"
-  end
-
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "book_genres", force: :cascade do |t|
-    t.integer "genre_id", null: false
+  create_table "authors_books", force: :cascade do |t|
+    t.integer "author_id", null: false
     t.integer "book_id", null: false
-    t.index ["book_id"], name: "index_book_genres_on_book_id"
-    t.index ["genre_id"], name: "index_book_genres_on_genre_id"
-  end
-
-  create_table "book_library_cards", force: :cascade do |t|
-    t.integer "library_card_id", null: false
-    t.integer "book_id", null: false
-    t.index ["book_id"], name: "index_book_library_cards_on_book_id"
-    t.index ["library_card_id"], name: "index_book_library_cards_on_library_card_id"
+    t.index ["author_id"], name: "index_authors_books_on_author_id"
+    t.index ["book_id"], name: "index_authors_books_on_book_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -45,6 +31,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_165804) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["library_id"], name: "index_books_on_library_id"
+  end
+
+  create_table "books_genres", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.integer "book_id", null: false
+    t.index ["book_id"], name: "index_books_genres_on_book_id"
+    t.index ["genre_id"], name: "index_books_genres_on_genre_id"
+  end
+
+  create_table "books_library_cards", force: :cascade do |t|
+    t.integer "library_card_id", null: false
+    t.integer "book_id", null: false
+    t.index ["book_id"], name: "index_books_library_cards_on_book_id"
+    t.index ["library_card_id"], name: "index_books_library_cards_on_library_card_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -73,13 +73,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_165804) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "author_books", "authors"
-  add_foreign_key "author_books", "books"
-  add_foreign_key "book_genres", "books"
-  add_foreign_key "book_genres", "genres"
-  add_foreign_key "book_library_cards", "books"
-  add_foreign_key "book_library_cards", "library_cards"
+  add_foreign_key "authors_books", "authors"
+  add_foreign_key "authors_books", "books"
   add_foreign_key "books", "libraries"
+  add_foreign_key "books_genres", "books"
+  add_foreign_key "books_genres", "genres"
+  add_foreign_key "books_library_cards", "books"
+  add_foreign_key "books_library_cards", "library_cards"
   add_foreign_key "library_cards", "libraries"
   add_foreign_key "library_cards", "users"
 end
