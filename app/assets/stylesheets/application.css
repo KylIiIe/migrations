@@ -13,3 +13,65 @@
  *= require_tree .
  *= require_self
  */
+
+ .user-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 10px 0;
+}
+
+.user-email {
+  margin-right: 10px;
+}
+
+.sign-in-btn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.sign-in-btn:hover {
+  background-color: #3e8e41;
+}
+
+.sign-up-btn {
+  background-color: #2196f3;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.sign-up-btn:hover {
+  background-color: #0d47a1;
+}
+
+.sign-out-btn {
+  background-color: #e53935;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.sign-out-btn:hover {
+  background-color: #b71c1c;
+}

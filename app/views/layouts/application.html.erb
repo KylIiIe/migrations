@@ -1,16 +1,26 @@
 <!DOCTYPE html>
+<%= stylesheet_link_tag "application" %>
 <html>
   <head>
-    <title>Lab1</title>
+    <title>LibraryApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <div class="user-info">
+    <% if user_signed_in? %>
+      <div class="user-email">Welcome <%= current_user.email %></div>
+      <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign-out-btn" %>
+    <% else %>
+      <%= link_to "Sign in", new_user_session_path, class: "sign-in-btn" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "sign-up-btn" %>
+    <% end %>
+  </div>
+  <div class="header">
+    
+  </div>
     <%= yield %>
   </body>
 </html>
