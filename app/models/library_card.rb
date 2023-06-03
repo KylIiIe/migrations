@@ -1,6 +1,6 @@
 class LibraryCard < ApplicationRecord
   belongs_to :library
-  has_and_belongs_to_many :books
+  has_and_belongs_to_many :books, optional: true
   belongs_to :user
   validates :library, presence: true
   validates :user, presence: true, uniqueness: { scope: [:library] }
@@ -31,5 +31,10 @@ class LibraryCard < ApplicationRecord
       puts library_card.errors.full_messages
       nil
     end
+  end
+
+  def self.delete_library_card(id)
+    library_card = LibraryCard.find(id)
+    library_card.delete
   end
 end

@@ -25,17 +25,26 @@ class Book < ApplicationRecord
     end
   end
 
-  def self.update_book(name, year, library_id, id)
+  def self.update_book(name, year, library_id, author_ids, genre_ids, id)
     library = Library.find(library_id)
-    LibraryCard.find(library_card_id)
+    authors = Author.find(author_ids)
+    genres = Genre.find(genre_ids)
     book_id = Book.find(id)
-    book = Book.new(name:, year:, library:)
+    book = Book.new(name:, year:, library:, genres:, authors:)
     if book.valid?
-      book_id.update(name:, year:, library:)
+      book_id.update(name:, year:, library:, genres:, authors:)
       Book.find(id)
     else
       puts book.errors.full_messages
       nil
     end
+  end
+
+  def self.delete_book(id)
+    book = Book.find(id)
+    book.authors = []
+    book.genres = []
+    book.library_cards = []
+    book.delete
   end
 end

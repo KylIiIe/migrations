@@ -1,0 +1,8 @@
+<h1>Усі жанри</h1>
+</p><%= link_to 'Назад', home_path %></p>
+<ul>
+  <% @genres.each do |genre| %>
+    <li><%= link_to genre.name, genre_path(genre) %></li>
+  <% end %>
+</ul>
+<%= link_to 'Cтворити жанр', new_genre_path %>

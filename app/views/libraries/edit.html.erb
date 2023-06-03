@@ -1,0 +1,23 @@
+<h1>Редагувати бібліотеку</h1>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= form_with(model: @library, url: library_path(@library), method: :patch) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year_of_creation %>
+    <%= form.text_field :year_of_creation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

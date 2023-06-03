@@ -25,4 +25,9 @@ class Author < ApplicationRecord
       nil
     end
   end
+
+  def self.delete_author(id)
+    author = Author.find(id)
+    author.delete
+  end
 end

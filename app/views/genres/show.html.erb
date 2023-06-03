@@ -1,0 +1,5 @@
+<h1><%= @genre.name %></h1>
+
+<%= link_to 'Усi жанри', genres_path %>
+<%= link_to 'Редагувати', edit_genre_path%>
+<%= button_to "Видалити", @genre, method: :delete %>

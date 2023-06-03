@@ -23,4 +23,9 @@ class Genre < ApplicationRecord
       nil
     end
   end
+
+  def self.delete_genre(id)
+    genre = Genre.find(id)
+    genre.delete
+  end
 end

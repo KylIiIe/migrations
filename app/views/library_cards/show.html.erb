@@ -1,0 +1,29 @@
+<h1>Читацький квиток</h1>
+
+<table>
+  <tr>
+    <td><strong>User:</strong></td>
+    <td><%= @library_card.user.name %></td>
+  </tr>
+  <tr>
+    <td><strong>Library:</strong></td>
+    <td><%= @library_card.library.name %></td>
+  </tr>
+  <tr>
+    <td><strong>Books:</strong></td>
+    <td>
+      <% if @library_card.books.any? %>
+        <ul>
+          <% @library_card.books.each do |book| %>
+            <li><%= book.title %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>немає книг</p>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<p><%= link_to 'Редагувати', edit_library_card_path(@library_card) %></p>
+<p><%= link_to 'Назад', library_cards_path %></p>

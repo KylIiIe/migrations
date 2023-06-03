@@ -1,0 +1,68 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(function(){
+        $("#book_author_ids").select2();
+    });
+    $(function(){
+        $("#book_genre_ids").select2();
+    });
+</script>
+
+<h1>Редагувати книгу</h1>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= form_with(model: @book, url: book_path(@book), method: :put) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.date_field :year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :library_id %>
+    <%= form.collection_select :library_id, @libraries, :id, :name %>
+  </div>
+
+  <div class="genres">
+    <%= form.label :genres, 'Genres' %>
+    <br/>
+    <div class="selected">
+      <select name="book[genre_ids][]" id="book_genre_ids" multiple>
+        <% Genre.all.each do |genre| %>
+          <option <%= @book.genres.map{ |g| g.name }.include?(genre.name) ? "selected" : "" %> name="[]" value=<%= genre.id %>>
+            <%= genre.name %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
+  <div class="authors">
+    <%= form.label :authors, 'Authors' %>
+    <br/>
+    <div class="selected">
+      <select name="book[author_ids][]" id="book_author_ids" multiple>
+        <% Author.all.each do |author| %>
+          <option <%= @book.authors.map{ |a| a.name }.include?(author.name) ? "selected" : "" %> name="[]" value=<%= author.id %>>
+            <%= author.name %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

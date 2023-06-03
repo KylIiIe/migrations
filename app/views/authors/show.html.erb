@@ -1,0 +1,5 @@
+<h1><%= @author.name %></h1>
+
+<%= link_to 'Усі автори', authors_path %>
+<%= link_to 'Редагувати', edit_author_path%>
+<%= button_to "Видалити автора", @author, method: :delete %>

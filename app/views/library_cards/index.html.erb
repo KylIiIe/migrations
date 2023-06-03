@@ -1,0 +1,28 @@
+<h1>Усi читацький квитоки</h1>
+</p><%= link_to 'Назад', home_path %></p>
+<table>
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Library</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @library_cards.each do |library_card| %>
+    <tr>
+      <td><%= library_card.user.name %></td>
+      <td><%= library_card.library.name %></td>
+      <td>
+        <%= link_to 'Показати', library_card %>
+        <%= link_to 'Редагувати', edit_library_card_path(library_card) %>
+        <%= button_to 'Видалити', library_card, method: :delete%>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Створити читацький квиток', new_library_card_path %>

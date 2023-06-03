@@ -28,4 +28,9 @@ class User < ApplicationRecord
       nil
     end
   end
+
+  def self.delete_user(id)
+    user = User.find(id)
+    user.delete
+  end
 end

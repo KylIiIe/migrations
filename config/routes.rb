@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "page#home"
   get '/home', to: 'page#home'
+  resources :authors, :genres, :libraries, :users, :books, :library_cards
 end

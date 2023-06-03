@@ -1,0 +1,22 @@
+<h1><%= @library.name %></h1>
+
+<p>
+  <b>Year of creation:</b> <%= @library.year_of_creation %>
+</p>
+
+<h2>Books</h2>
+<ul>
+  <% @books.each do |book| %>
+    <li><%= book.title %></li>
+  <% end %>
+</ul>
+
+<h2>Library Cards user name</h2>
+<ul>
+  <% @library_cards.each do |library_card| %>
+    <li><%= library_card.user.name %></li>
+  <% end %>
+</ul>
+<%= link_to 'Усі бібліотеки', libraries_path %>
+<%= link_to 'Редагувати', edit_library_path%>
+<%= button_to "Видалити", @library, method: :delete %>
