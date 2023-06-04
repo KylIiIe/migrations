@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_160127) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "year_of_creation"
+    t.datetime "year_of_creation"
   end
 
   create_table "library_cards", force: :cascade do |t|
