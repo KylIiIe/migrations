@@ -35,4 +35,21 @@ namespace :parser do
       Library.create(name: name, city: city, year_of_creation: year_of_creation, street: street, zip_code: zip_code)
     end
   end
+
+  desc "Parse csv with treads"
+  task :parse_csv_treads =>:environment do
+    threads = []
+    CSV.foreach('libraries_5.csv', headers: true) do |row|
+      threads << Thread.new do
+        name = row['Library Name']
+        street = row['Street Address']
+        city = row['City']
+        zip_code = row['Zip Code']
+        p "Name: #{name}, Street: #{street}, City: #{city}, Zip Code: #{zip_code}"
+        year_of_creation = year_of_creation = Faker::Date.between(from: '1700-01-01', to: '2023-04-27')
+        Library.create(name: name, city: city, year_of_creation: year_of_creation, street: street, zip_code: zip_code)
+      end
+    end
+    threads.each(&:join)
+  end
 end
