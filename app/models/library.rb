@@ -8,7 +8,7 @@ class Library < ApplicationRecord
     create_updated = Time.now.strftime('%Y-%m-%d %H:%M:%S')
     library = Library.new(name:, year_of_creation:)
     if library.valid?
-      connection.execute("INSERT INTO libraries (name, year_of_creation, created_at, updated_at) VALUES ('#{name}', '#{year_of_creation}' '#{create_updated}','#{create_updated}')")
+      connection.execute("INSERT INTO libraries (name, year_of_creation, created_at, updated_at) VALUES ('#{name}', '#{year_of_creation}', '#{create_updated}','#{create_updated}')")
       Library.last
     else
       puts library.errors.full_messages
@@ -20,7 +20,7 @@ class Library < ApplicationRecord
     updated_at = Time.now.strftime('%Y-%m-%d %H:%M:%S')
     library = Library.new(name:, year_of_creation:)
     if library.valid?
-      connection.execute("UPDATE libraries SET name = '#{name}', year_of_creation = '#{year_of_creation}' updated_at = '#{updated_at}' WHERE id = #{id}")
+      connection.execute("UPDATE libraries SET name = '#{name}', year_of_creation = '#{year_of_creation}', updated_at = '#{updated_at}' WHERE id = #{id}")
       Library.find(id)
     else
       puts library.errors.full_messages
