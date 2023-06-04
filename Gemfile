@@ -80,3 +80,7 @@ gem "kaminari", "~> 1.2"
 gem "rspec-rails", "~> 6.0"
 
 gem "prawn", "~> 2.4"
+
+gem "activeadmin", "~> 2.13"
+
+gem "sassc", "~> 2.4"
