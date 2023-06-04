@@ -78,3 +78,5 @@ gem "devise", "~> 4.9"
 gem "kaminari", "~> 1.2"
 
 gem "rspec-rails", "~> 6.0"
+
+gem "prawn", "~> 2.4"

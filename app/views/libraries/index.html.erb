@@ -32,4 +32,6 @@
 </table>
 <%= paginate @libraries %>
 <br>
+<%= link_to 'Download CSV', downloader_csv_path(format: :csv) %>
+<%= link_to 'Download PDF', downloader_pdf_path(format: :pdf) %>
 <%= link_to 'Створити бібліотеку', new_library_path %>

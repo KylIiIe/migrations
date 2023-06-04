@@ -17,6 +17,7 @@
     <li><%= library_card.user.name %></li>
   <% end %>
 </ul>
+<%= link_to "Download PDF", downloader_pdf_library_path(@library) %>
 <%= link_to 'Усі бібліотеки', libraries_path %>
 <%= link_to 'Редагувати', edit_library_path%>
 <%= button_to "Видалити", @library, method: :delete %>

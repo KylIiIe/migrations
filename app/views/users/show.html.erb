@@ -2,6 +2,7 @@
 
 <p>Email: <%= @user.email %></p>
 
+<%= link_to "Download PDF", downloader_pdf_user_path(@user) %>
 <%= link_to 'Усi користувачі', users_path %>
 <%= link_to 'Редагувати', edit_user_registration_path%>
 <%= button_to "Видалити", @user, method: :delete %>
