@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'faker'
+require 'csv'
 
 namespace :parser do
   desc "Parse libraries"
@@ -19,6 +20,19 @@ namespace :parser do
         p name
         Library.create(name: name, year_of_creation: year_of_creation)
       end
+    end
+  end
+
+  desc "Parse csv"
+  task :parse_csv =>:environment do
+    CSV.foreach('libraries_5.csv', headers: true) do |row|
+      name = row['Library Name']
+      street = row['Street Address']
+      city = row['City']
+      zip_code = row['Zip Code']
+      p "Name: #{name}, Street: #{street}, City: #{city}, Zip Code: #{zip_code}"
+      year_of_creation = year_of_creation = Faker::Date.between(from: '1700-01-01', to: '2023-04-27')
+      Library.create(name: name, city: city, year_of_creation: year_of_creation, street: street, zip_code: zip_code)
     end
   end
 end
