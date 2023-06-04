@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :library_card
+  has_one_attached :avatar
   validates :name, presence: true
 
-  def self.add_user(name)
-    user = User.new(name:)
+  def self.add_user(name, avatar)
+    user = User.new(name:, avatar:)
     if user.valid?
       user.save
       User.last
@@ -17,11 +18,11 @@ class User < ApplicationRecord
     end
   end
 
-  def self.update_user(name, id)
+  def self.update_user(name, avatar, id)
     user_id = User.find(id)
-    user = User.new(name:)
+    user = User.new(name:, avatar:)
     if user.valid?
-      user_id.update(name:)
+      user_id.update(name:, avatar:)
       user_id
     else
       puts user.errors.full_messages

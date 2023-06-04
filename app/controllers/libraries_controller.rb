@@ -1,5 +1,6 @@
 class LibrariesController < ApplicationController
   before_action :set_library, only: %i[show edit update]
+  include ActiveStorage::SetCurrent
 
   def index
     @libraries = LibrariesQuery.main_sort(params)
@@ -10,6 +11,7 @@ class LibrariesController < ApplicationController
   def show
     @books = @library.books
     @library_cards = @library.library_cards
+    @image = @library.image.url
   end
 
   def new
@@ -17,12 +19,12 @@ class LibrariesController < ApplicationController
   end
 
   def create
-    @library = Library.new(name: library_params[:name], year_of_creation: library_params[:year_of_creation])
+    @library = Library.new(name: library_params[:name], year_of_creation: library_params[:year_of_creation], image: library_params[:image])
     if @library.save
       redirect_to @library
     else
       flash.now[:alert] = 'This library already exists!'
-      @library = Library.new(name: library_params[:name], year_of_creation: library_params[:year_of_creation])
+      @library = Library.new(name: library_params[:name], year_of_creation: library_params[:year_of_creation], image: library_params[:image])
       render :new
     end
   end
@@ -30,7 +32,7 @@ class LibrariesController < ApplicationController
   def edit; end
 
   def update
-    if @library.update(name: library_params[:name], year_of_creation: library_params[:year_of_creation])
+    if @library.update(name: library_params[:name], year_of_creation: library_params[:year_of_creation], image: library_params[:image])
       redirect_to @library
     else
       flash.now[:alert] = 'This library already exists!'
@@ -51,6 +53,6 @@ class LibrariesController < ApplicationController
   end
 
   def library_params
-    params.require(:library).permit(:name, :year_of_creation)
+    params.require(:library).permit(:name, :year_of_creation, :image)
   end
 end

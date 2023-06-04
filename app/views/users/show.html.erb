@@ -1,5 +1,7 @@
 <h1><%= @user.name %></h1>
 
+<img src=<%= @avatar %> width="300" height="400">
+
 <p>Email: <%= @user.email %></p>
 
 <%= link_to "Download PDF", downloader_pdf_user_path(@user) %>

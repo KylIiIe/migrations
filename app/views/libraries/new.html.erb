@@ -17,6 +17,11 @@
     <%= form.text_field :year_of_creation %>
   </div>
 
+  <p>
+    <%= form.label :image, 'Add image' %>
+    <%= form.file_field :image %>
+  </p>
+
   <div class="actions">
     <%= form.submit %>
   </div>

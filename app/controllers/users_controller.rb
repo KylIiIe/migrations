@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit]
+  include ActiveStorage::SetCurrent
 
   def index
     @users = UsersQuery.main_sort(params)
@@ -9,14 +10,16 @@ class UsersController < ApplicationController
     @count = params[:count]
   end
 
-  def show; end
+  def show
+    @avatar = @user.avatar.url
+  end
 
   def new
     @user = User.new
   end
 
   def create
-    @user = User.add_user(user_params[:name])
+    @user = User.add_user(user_params[:name], user_params[:avatar])
     if @user
       redirect_to @user
     else
@@ -29,7 +32,7 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    user = User.update_user(user_params[:name], params[:id])
+    user = User.update_user(user_params[:name], user_params[:avatar], params[:id])
     if user
       redirect_to user
     else
@@ -51,6 +54,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :avatar)
   end
 end
